@@ -37,23 +37,23 @@ class MainActivity : AppCompatActivity() {
             }
 
         button.setOnClickListener {
-//            if (!hasCameraPermission()) {
-//                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 0)
-//            } else {
-//                val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//                photoFile = getPhotoFile(FILE_NAME)
-//
-//                // Make sure there is any application in the android device which can handle this intent
-//                val fileProvider =
-//                    FileProvider.getUriForFile(this, "com.adityashidlyali.camera", photoFile)
-//                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
-//
-//                if (takePictureIntent.resolveActivity(this.packageManager) != null) {
-//                    resultLauncher.launch(takePictureIntent)
-//                } else {
-//                    Toast.makeText(this, "Unable to open camera", Toast.LENGTH_SHORT).show()
-//                }
-//            }
+            if (!hasCameraPermission()) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 0)
+            } else {
+                val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                photoFile = getPhotoFile(FILE_NAME)
+
+                // Make sure there is any application in the android device which can handle this intent
+                val fileProvider =
+                    FileProvider.getUriForFile(this, "com.adityashidlyali.camera", photoFile)
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
+
+                if (takePictureIntent.resolveActivity(this.packageManager) != null) {
+                    resultLauncher.launch(takePictureIntent)
+                } else {
+                    Toast.makeText(this, "Unable to open camera", Toast.LENGTH_SHORT).show()
+                }
+            }
 
             requestPermissions()
         }
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
